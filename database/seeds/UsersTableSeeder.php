@@ -13,13 +13,21 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        $role1 = Role::create([
+            'name' => 'admin',
+        ]);
+
+        $role2 = Role::create([
+            'name' => 'user',
+        ]);
+
         $user1 = User::create([
             'name' => 'User1',
             'email' => 'user1@gmail.com',
             'password' => Hash::make('12345678')
         ]);
 
-        $user1->roles()->attach(1);
+        $user1->roles()->attach($role1->id);
 
         $user2 = User::create([
             'name' => 'User2',
@@ -27,7 +35,7 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('12345678')
         ]);
 
-        $user2->roles()->attach(2);
+        $user2->roles()->attach($role2->id);
 
     }
 }
