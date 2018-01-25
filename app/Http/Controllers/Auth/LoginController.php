@@ -39,6 +39,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    //override the default login
     public function login()
     {
         return view('auth.login');
@@ -55,20 +56,14 @@ class LoginController extends Controller
 
         // check if username and password match any roles
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            $user = Auth::user();
-            foreach ($user->roles as $role) {
-                if ($role->name === 'admin') {
-                    return redirect()->intended(route('admin.home'));
-                }
+            //user authenticated
+            //check if user has role of admin
+            if (Auth::user()->hasRole('admin')) {
+                return redirect()->intended(route('admin.home'));
+            }
 
-                return redirect()->intended(route('home'));
-            };
+            return redirect()->intended(route('user.home'));
         }
-/*        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            return redirect()->intended(route('admin.home'));
-        } else if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            return redirect()->intended(route('home'));
-        }*/
 
         // if failed return with error
         return redirect()->back()

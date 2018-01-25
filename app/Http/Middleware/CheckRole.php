@@ -21,10 +21,12 @@ class CheckRole
             return redirect(route('login'));
         }
 
-        foreach ($request->user()->roles as $role) {
-            if ($role->name === $roleName) {
-                return $next($request);
-            }
+        if (count($request->user()->roles) <= 0) {
+            abort(404, 'Couldn\'t find any roles');
+        }
+
+        if ($request->user()->hasRole($roleName)) {
+            return $next($request);
         }
 
         return redirect(route('login'));
