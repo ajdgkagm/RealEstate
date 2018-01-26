@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm-6 col-md-4" >
                 <div class="thumbnail" style="border-bottom: 3px red solid;">
-                    <a href="#">
+                    <a href="{{ route('property.profile') }}">
                     <img src="{{ asset('images/index2.svg') }}" alt="an image">
                     </a>
                     <div class="caption">
