@@ -28,4 +28,6 @@ Route::prefix('property')->group(function () {
     Route::get('image/edit/{image}', 'ResourceImageController@edit')->name('image.edit');
     Route::post('image/update/{image}', 'ResourceImageController@update')->name('image.update');
     Route::post('image/delete', 'ResourceImageController@destroy')->name('image.destroy');
+
+    Route::post('message/store', 'MessageController@store')->name('message.store');
 });

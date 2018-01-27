@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\updateImage;
 use App\Image;
 use App\Property;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,7 +24,11 @@ class PropertyController extends Controller
 
     public function profile(Property $property)
     {
-        return view('property.profile', compact('property'));
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('name', 'admin');
+        })->get();
+
+        return view('property.profile', compact('property', 'users'));
     }
 
     public function create()

@@ -3,6 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row">
+            @if(count($properties) === 0)
+                <h2 class="text-warning text-center">No Properties Yet</h2>
+            @endif
             @foreach($properties as $property)
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail" style="border-bottom: 3px red solid;">

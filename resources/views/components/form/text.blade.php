@@ -10,7 +10,9 @@
     @endif
     @php($name = implode(' ', $name))
 
+    @if(!in_array('label', $attributes))
     {{ Form::label($name, null, ['class' => 'control-label']) }}
+    @endif
     {{--replace with red asterisk if found--}}
     @isset($ast)
         <span class="text-red">*</span>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,6 +14,10 @@ class AdminController extends Controller
 
     public function home()
     {
-        return view('auth.dashboard.admin.home');
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('name', 'user');
+        })->get();
+
+        return view('auth.dashboard.admin.home', compact('users'));
     }
 }

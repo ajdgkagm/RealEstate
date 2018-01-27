@@ -32,6 +32,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role');
     }
 
+    public function messages()
+    {
+        return $this->hasMany('App\Message');
+    }
+
     public function hasRole($roleName)
     {
         foreach ($this->roles()->get() as $role)
