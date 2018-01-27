@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\updateImage;
 use App\Image;
-use App\property;
+use App\Property;
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller
