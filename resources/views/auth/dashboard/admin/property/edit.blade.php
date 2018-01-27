@@ -10,47 +10,66 @@
             </div>
         @endif
 
-
         <div class="col-md-12">
-            {{ Form::model($property, ['route' => ['property.edit', $property->id], 'enctype' => 'multipart/form-data']) }}
+
+
+
             <legend>Edit Property</legend>
 
             <div class="row" style="max-height: 350px; overflow: hidden;">
                 <div class="container-overlay">
-                    <a href="https://trezoro.co">
                         <img src="{{ asset('images/property/' . $property->firstImage()->file_name) }}"
                              alt="an image"
                              class="image">
                         <div class="overlay">
-                            <p>Entire element is the link here</p>
+                            <p>
+                                <a href="{{ route('image.edit', ['image' => $property->firstImage()->id]) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('image.destroy') }}" class="btn btn-danger"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('delete-image').submit();">
+                                    Delete
+                                </a>
+                            </p>
+                                <form id="delete-image" action="{{ route('image.destroy') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                <input type="hidden" name="id" value="{{ $property->firstImage()->id }}">
+                                </form>
+
                         </div>
-                    </a>
                 </div>
 
-               {{-- <a href="#">
-                    <img style="height: 344px; width: 442px; float:left; margin-right: 3px" src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
-                </a>--}}
+                {{--reduce database query (N + 1) --}}
+                @php
+                 $firstImage = $property->firstImage()->file_name
+                @endphp
                 @foreach($property->images as $ind=>$image)
-                    @if($image->file_name !== $property->firstImage()->file_name)
+                    @if($image->file_name !== $firstImage)
                         <div class="container-overlay-sm">
                             <img src="{{ asset('images/property/' . $image->file_name) }}"
                                  alt="an image"
                                  class="image">
                             <div class="overlay-sm">
-                                <a href="#">
-                                    <p>Only the text is a link </p>
-                                </a>
+                                <p>
+                                    <a href="{{ route('image.edit', ['image' => $image->id]) }}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('image.destroy') }}" class="btn btn-danger"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('delete-image-{{ $image->id }}').submit();">
+                                        Delete
+                                    </a>
+                                </p>
+                                <form id="delete-image-{{ $image->id }}" action="{{ route('image.destroy') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="id" value="{{ $image->id }}">
+                                </form>
+
                             </div>
                         </div>
                     @endif
-
                 @endforeach
 
-
             </div>
-
             <hr>
-
+            {{ Form::model($property, ['route' => ['property.edit', $property->id], 'files' => true]) }}
             <div class="form-group">
                 <label for="images">add images</label>
                 <input type="file" name="images[]" id="images" multiple>

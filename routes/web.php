@@ -20,6 +20,10 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('property')->group(function () {
     Route::get('/', 'PropertyController@index')->name('property.index');
-    Route::get('property/profile/{property}', 'PropertyController@profile')->name('property.profile');
-    Route::get('property/edit/{property}', 'PropertyController@edit')->name('property.edit');
+    Route::get('profile/{property}', 'PropertyController@profile')->name('property.profile');
+    Route::get('edit/{property}', 'PropertyController@edit')->name('property.edit');
+
+    Route::get('image/edit/{image}', 'ResourceImageController@edit')->name('image.edit');
+    Route::post('image/update/{image}', 'ResourceImageController@update')->name('image.update');
+    Route::post('image/delete', 'ResourceImageController@destroy')->name('image.destroy');
 });

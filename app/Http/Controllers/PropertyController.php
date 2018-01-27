@@ -34,11 +34,12 @@ class PropertyController extends Controller
     {
         $property = Property::create($request->all());
         $this->storeImage($request, $property->id);
-        return back()->with(['msg' => 'success fully added property']);
+        return back()->with(['msg' => 'Successfully added property']);
     }
 
     public function edit(Property $property)
     {
+        $property = $property->load('images');
         return view('auth.dashboard.admin.property.edit', compact('property'));
     }
 
@@ -83,7 +84,9 @@ class PropertyController extends Controller
                 ]);
             }
 
-        }
+        } else {
+            abort(403, 'No Image');
+    }
     }
 
     public function updateImage(updateImage $request)

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     public $timestamps = false;
-    protected $guarded = [];
+    protected $fillable = ['path', 'file_name', 'type', 'title', 'description', 'position', 'property_id'];
 
     public function property()
     {
