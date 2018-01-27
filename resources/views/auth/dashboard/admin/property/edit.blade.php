@@ -12,8 +12,6 @@
 
         <div class="col-md-12">
 
-
-
             <legend>Edit Property</legend>
 
             <div class="row" style="max-height: 350px; overflow: hidden;">
@@ -69,7 +67,7 @@
 
             </div>
             <hr>
-            {{ Form::model($property, ['route' => ['property.edit', $property->id], 'files' => true]) }}
+            {{ Form::model($property, ['route' => ['property.update', $property->id], 'files' => true]) }}
             <div class="form-group">
                 <label for="images">add images</label>
                 <input type="file" name="images[]" id="images" multiple>

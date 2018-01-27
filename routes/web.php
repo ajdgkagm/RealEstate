@@ -22,6 +22,8 @@ Route::prefix('property')->group(function () {
     Route::get('/', 'PropertyController@index')->name('property.index');
     Route::get('profile/{property}', 'PropertyController@profile')->name('property.profile');
     Route::get('edit/{property}', 'PropertyController@edit')->name('property.edit');
+    Route::post('update/{property}', 'PropertyController@update')->name('property.update');
+    Route::post('delete', 'PropertyController@destroy')->name('property.destroy');
 
     Route::get('image/edit/{image}', 'ResourceImageController@edit')->name('image.edit');
     Route::post('image/update/{image}', 'ResourceImageController@update')->name('image.update');
