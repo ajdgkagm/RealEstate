@@ -20,9 +20,9 @@ class PropertyController extends Controller
         return view('property.index', compact('properties'));
     }
 
-    public function profile()
+    public function profile(Property $property)
     {
-        return view('property.profile');
+        return view('property.profile', compact('property'));
     }
 
     public function create()
@@ -37,25 +37,22 @@ class PropertyController extends Controller
         return back()->with(['msg' => 'success fully added property']);
     }
 
-    public function show(property $property)
+    public function edit(Property $property)
+    {
+        return view('auth.dashboard.admin.property.edit', compact('property'));
+    }
+
+    public function update(Request $request, Property $property)
     {
         //
     }
 
-    public function edit(property $property)
+    public function destroy(Property $property)
     {
         //
     }
 
-    public function update(Request $request, property $property)
-    {
-        //
-    }
-
-    public function destroy(property $property)
-    {
-        //
-    }
+    /* IMAGES SECTION */
 
     public function findImage($property_id)
     {
@@ -96,6 +93,7 @@ class PropertyController extends Controller
 
         $image = Image::where('type', $request->type)
             ->where('title', $request->title)
+            ->where('file_name', $request->file_name)
             ->where('description', $request->description)
             ->where('position', $request->position)
             ->first();

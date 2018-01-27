@@ -20,5 +20,6 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('property')->group(function () {
     Route::get('/', 'PropertyController@index')->name('property.index');
-    Route::get('profile', 'PropertyController@profile')->name('property.profile');
+    Route::get('property/profile/{property}', 'PropertyController@profile')->name('property.profile');
+    Route::get('property/edit/{property}', 'PropertyController@edit')->name('property.edit');
 });

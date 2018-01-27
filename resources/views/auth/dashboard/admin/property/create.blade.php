@@ -3,6 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row">
+        @if(session('msg'))
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Message:</strong> {{ session('msg') }}
+            </div>
+        @endif
+
         <div class="col-md-12">
             {!! Form::open(['route' => 'property.store', 'enctype' => 'multipart/form-data']) !!}
             <legend>Add Property</legend>
