@@ -18,6 +18,19 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Properties</div>
+
+                <div class="panel-body">
+                    <div class="btn-group">
+                        <a href="{{ route('property.index') }}" type="button" class="btn btn-primary">View</a>
+                        <a href="{{ route('property.create') }}" type="button" class="btn btn-success">Create</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

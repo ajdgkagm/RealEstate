@@ -29,6 +29,7 @@ class CheckRole
             return $next($request);
         }
 
-        return redirect(route('login'));
+        abort(403, 'Error 403 Access Denied/Forbidden');
+//        return redirect(route('login'));
     }
 }
