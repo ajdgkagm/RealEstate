@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 
 class PropertyController extends Controller
 {
-    private $UploadImage = ResourceImageController::class;
-
     public function __construct()
     {
         $this->middleware('role:admin')->except(['index', 'profile']);
