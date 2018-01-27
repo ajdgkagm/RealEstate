@@ -7,7 +7,6 @@
             {!! Form::open(['route' => 'property.store', 'enctype' => 'multipart/form-data']) !!}
             <legend>Add Property</legend>
 
-
             <div class="form-group">
                 <label for="images">images</label>
                 <input type="file" name="images[]" id="images" multiple>

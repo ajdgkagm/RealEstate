@@ -8,4 +8,14 @@ class Property extends Model
 {
     public $timestamps = false;
     protected $fillable = ['id', 'caption', 'location', 'price', 'beds', 'bath', 'sqft', 'sqftPrice', 'built'];
+
+    public function images()
+    {
+        return $this->hasMany('App\Image');
+    }
+
+    public function firstImage()
+    {
+        return $this->images()->first();
+    }
 }

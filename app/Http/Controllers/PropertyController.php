@@ -18,7 +18,8 @@ class PropertyController extends Controller
 
     public function index()
     {
-        return view('property.index');
+        $properties = Property::all();
+        return view('property.index', compact('properties'));
     }
 
     public function profile()
@@ -77,7 +78,7 @@ class PropertyController extends Controller
                 $name = $image->hashName();
 
                 Image::create([
-                    'path'        => 'images/property',
+                    'path'        => 'public/images/property/',
                     'file_name'   => $name,
                     'type'        => 'property',
                     'title'       => $request->title,
