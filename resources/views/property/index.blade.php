@@ -7,7 +7,7 @@
             <div class="col-sm-6 col-md-4" >
                 <div class="thumbnail" style="border-bottom: 3px red solid;">
                     <a href="{{ route('property.profile') }}">
-                    <img src="{{ asset('storage/images/property/' . $property->firstImage()->file_name) }}" alt="an image">
+                    <img src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
                     </a>
                     <div class="caption">
                         <h3>₱{{ $property->price }}M</h3>
