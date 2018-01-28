@@ -1,7 +1,17 @@
 <?php
 
+//use Cornford\Googlmapper\Mapper;
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/maps', function () {
+    Mapper::map(14.0835, 121.1474);
+
+    print '<div style="height: 400px; width: 400px;">';
+    print Mapper::render();
+    print '</div>';
 });
 
 Auth::routes();

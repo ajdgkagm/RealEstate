@@ -39,7 +39,7 @@
                                     @foreach($reservations as $reservation)
                                         <tr>
                                             <td>{{ $reservation->property->location }}</td>
-                                            <td>{{  $reservation->property->price }}</td>
+                                            <td>{{ $reservation->property->price }}</td>
                                             <td>{{ $reservation->property->sqft }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('property.profile', [$reservation->property->id]) }}"
@@ -49,7 +49,9 @@
                                                            document.getElementById('property-reserve-{{ $reservation->property->id }}').submit();">
                                                     Remove
                                                 </a>
-                                                <form id="property-reserve-{{ $reservation->property->id }}" action="{{ route('reservation.destroy', [$reservation->property->id]) }}" method="POST" style="display: none;">
+                                                <form id="property-reserve-{{ $reservation->property->id }}"
+                                                      action="{{ route('reservation.destroy', [$reservation->property->id]) }}"
+                                                      method="POST" style="display: none;">
                                                     {{ csrf_field() }}
                                                 </form>
                                             </td>

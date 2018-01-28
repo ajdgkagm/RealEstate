@@ -32,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
             return preg_match('/(^[A-Za-z0-9 ]+$)+/', $value);
         });
 
+        Validator::extend('coordinates', function ($attribute, $value) {
+            return preg_match('/^[0-9,. ]+$/', $value);
+        });
+
         //Form Builder
         Form::component('bsText', 'components.form.text', ['name', 'value' => null, 'attributes' => []]);
         Form::component('bsDate', 'components.form.date', ['name', 'value' => null, 'attributes' => []]);

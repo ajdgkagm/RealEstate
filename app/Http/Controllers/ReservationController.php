@@ -16,7 +16,7 @@ class ReservationController extends Controller
     //@todo prevent double reservation for same property
     public function store(Property $property)
     {
-        Reservation::create([
+        Reservation::updateOrCreate([
             'user_id' => auth()->id(),
             'property_id' => $property->id
         ]);

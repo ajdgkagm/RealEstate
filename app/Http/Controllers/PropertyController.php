@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storeProperty;
 use App\Http\Requests\updateImage;
 use App\Image;
 use App\Property;
@@ -36,11 +37,41 @@ class PropertyController extends Controller
         return view('auth.dashboard.admin.property.create');
     }
 
-    public function store(Request $request)
+    public function store(storeProperty $request)
     {
+        //check if coordinates is not null
+        if ($request->coordinates !== null) {
+            //fill latitude and longitude based on coordinates
+            $coordinates = explode(',', $request->coordinates);
+            //check if both coordinates have valid length
+            if (!($this->validLength($coordinates[0]) && $this->validLength($coordinates[1]))) {
+                return back()->withInput()->withErrors(['error' => 'Invalid Coordinates']);
+            }
+            $request->request->add(['latitude' => $coordinates[0], 'longitude' => $coordinates[1]]);
+        }
+
         $property = Property::create($request->all());
-        $this->storeImage($request, $property->id);
-        return back()->with(['msg' => 'Successfully added property']);
+        return $this->storeImage($request, $property->id);
+
+    }
+
+    public function validLength($number)
+    {
+
+        $nums = explode('.', $number);
+        if (!isset($nums[0]) || !isset($nums[1])) {
+            return false;
+        }
+
+        if (strlen((string)$nums[0]) > 10) {
+            return false;
+        }
+
+        if (strlen((string)$nums[1]) > 7) {
+            return false;
+        }
+
+        return true;
     }
 
     public function edit(Property $property)
@@ -64,7 +95,7 @@ class PropertyController extends Controller
         $property = Property::findOrFail($request->id);
 
         foreach ($property->images as $image) {
-            Storage::disk('public')->delete('images/property/'.$image->file_name);
+            Storage::disk('public')->delete('images/property/' . $image->file_name);
             $image->delete();
         }
 
@@ -105,8 +136,10 @@ class PropertyController extends Controller
             }
 
         } else {
-            abort(403, 'No Image');
+            return back()->withInput()->withErrors(['error' => 'Please Upload at least 1 Image']);
         }
+
+        return back()->with(['msg' => 'Successfully added property']);
     }
 
     /*    public function updateImage(updateImage $request)

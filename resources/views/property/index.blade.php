@@ -10,7 +10,9 @@
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail" style="border-bottom: 3px red solid;">
                     <a href="{{ route('property.profile', [$property->id]) }}">
-                    <img style="width: 100%; height: 100%; max-height: 540px;" src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
+                        @isset($property->firstImage()->file_name)
+                            <img style="width: 100%; height: 100%; max-height: 540px;" src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
+                        @endisset
                     </a>
                     <div class="caption">
                         <h3>₱{{ $property->price }}M

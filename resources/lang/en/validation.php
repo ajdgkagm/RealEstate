@@ -91,6 +91,7 @@ return [
     //My Custom validation message
     'alpha_spaces'         => 'The :attribute may only contain letters and spaces.',
     'alpha_num_spaces'     => 'The :attribute may only contain letters, numbers and spaces.',
+    'coordinates'          => 'The :attribute may only contain comma, numbers and spaces.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
