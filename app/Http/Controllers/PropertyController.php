@@ -42,8 +42,8 @@ class PropertyController extends Controller
 
     public function store(storeProperty $request)
     {
-        if ($this->validateCoordinates() !== true) {
-            return $this->validateCoordinates();
+        if ($this->validateCoordinates($request) !== true) {
+            return $this->validateCoordinates($request);
         }
 
         $property = Property::create($request->all());
@@ -51,17 +51,17 @@ class PropertyController extends Controller
 
     }
 
-    public function validateCoordinates()
+    public function validateCoordinates($request)
     {
         //check if coordinates is not null
-        if (request()->coordinates !== null) {
+        if ($request->coordinates !== null) {
             //fill latitude and longitude based on coordinates
-            $coordinates = explode(',', request()->coordinates);
+            $coordinates = explode(',', $request->coordinates);
             //check if both coordinates have valid length
             if (!($this->validLength($coordinates[0]) && $this->validLength($coordinates[1]))) {
                 return back()->withInput()->withErrors(['error' => 'Invalid Coordinates']);
             }
-            request()->request->add(['latitude' => $coordinates[0], 'longitude' => $coordinates[1]]);
+            $request->request->add(['latitude' => $coordinates[0], 'longitude' => $coordinates[1]]);
         }
 
         return true;
@@ -95,8 +95,8 @@ class PropertyController extends Controller
 
     public function update(storeProperty $request, Property $property)
     {
-        if ($this->validateCoordinates() !== true) {
-            return $this->validateCoordinates();
+        if ($this->validateCoordinates($request) !== true) {
+            return $this->validateCoordinates($request);
         }
 
         if ($request->hasFile('images')) {
