@@ -36,15 +36,29 @@
                                     @elseif (Auth::user()->hasRole('user'))
                                 <div class="btn-group pull-right">
                                     <a href="{{ route('property.profile', [$property->id]) }}" type="button" class="btn btn-primary btn-sm">View</a>
-                                    <a href="#" class="btn btn-success btn-sm"
-                                       onclick="event.preventDefault();
-                                               document.getElementById('property-reserve-{{ $property->id }}').submit();">
-                                        Reserve
-                                    </a>
-                                    <form id="property-reserve-{{ $property->id }}" action="{{ route('property.reserve', [$property->id]) }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                        <input type="hidden" name="id" value="{{ $property->id }}">
-                                    </form>
+
+                                    {{--IF USER HAVE NO RESERVATION FOR THAT PROPERTY--}}
+                                    @if(!Auth::user()->hasReservation($property->id))
+                                        <a href="#" class="btn btn-success btn-sm"
+                                           onclick="event.preventDefault();
+                                                   document.getElementById('property-reserve-{{ $property->id }}').submit();">
+                                            Reserve
+                                        </a>
+                                        <form id="property-reserve-{{ $property->id }}" action="{{ route('reservation.store', [$property->id]) }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+
+                                    {{--IF USER ALREADY RESERVE--}}
+                                    @else
+                                        <a href="#" class="btn btn-warning btn-sm"
+                                           onclick="event.preventDefault();
+                                                   document.getElementById('property-reserve-{{ $property->id }}').submit();">
+                                            Reserved<i class="fa fa-check lg"></i>
+                                        </a>
+                                        <form id="property-reserve-{{ $property->id }}" action="{{ route('reservation.destroy', [$property->id]) }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    @endif
                                 </div>
                                 @endif
                                 {{--./IF USER IS ORDINARY USER--}}

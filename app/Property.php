@@ -18,4 +18,9 @@ class Property extends Model
     {
         return $this->images()->first();
     }
+
+    public function reservation()
+    {
+        return $this->hasMany('App\Reservation');
+    }
 }

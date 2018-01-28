@@ -73,11 +73,6 @@ class PropertyController extends Controller
         return back()->with(['msg' => 'Successfully deleted Image']);
     }
 
-    public function reserve(Property $property)
-    {
-        return "RESERVING";
-    }
-
     /* IMAGES SECTION */
 
     public function findImage($property_id)

@@ -49,4 +49,22 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function reservations()
+    {
+        return $this->hasMany('App\Reservation');
+    }
+
+    public function hasReservation($id)
+    {
+        foreach ($this->reservations()->get() as $reservation)
+        {
+            if ($reservation->property_id === $id)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
