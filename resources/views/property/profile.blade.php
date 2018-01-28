@@ -6,6 +6,9 @@
             <a href="#">
                 <img style="height: 344px; width: 442px; float:left; margin-right: 3px" src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
             </a>
+            <div style="height: 172px; width: 221px; float:left; margin-right: 3px; margin-bottom: 2px;">
+                {!! Mapper::render() !!}
+            </div>
             @foreach($property->images as $ind=>$image)
                 @if($image->file_name !== $property->firstImage()->file_name)
                 <a href="#">

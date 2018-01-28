@@ -24,15 +24,15 @@ class storeProperty extends FormRequest
     public function rules()
     {
         return [
-            'caption'   => 'bail|required|alpha_num_spaces|max:255',
-            'location'  => 'bail|required|string|max:255',
-            'coordinates'  => 'bail|nullable|coordinates',
-            'price'     => 'bail|required|numeric',
-            'beds'      => 'bail|required|numeric|max:255',
-            'bath'      => 'bail|required|numeric|max:255',
-            'sqft'      => 'bail|required|numeric',
-            'sqftPrice' => 'bail|required|numeric',
-            'built'     => 'bail|required|date',
+            'caption'     => 'bail|required|alpha_num_spaces|max:255',
+            'location'    => 'bail|required|string|max:255',
+            'coordinates' => 'bail|nullable|coordinates',
+            'price'       => 'bail|required|numeric',
+            'beds'        => 'bail|required|numeric|max:255',
+            'bath'        => 'bail|required|numeric|max:255',
+            'sqft'        => 'bail|required|numeric',
+            'sqftPrice'   => 'bail|required|numeric',
+            'built'       => 'bail|required|date',
         ];
     }
 }

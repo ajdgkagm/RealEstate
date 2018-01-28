@@ -21,6 +21,7 @@
                                 {{--IF USER IS ADMIN--}}
                                 @if(Auth::user()->hasRole('admin'))
                                 <div class="btn-group pull-right">
+                                    <a href="{{  route('property.profile', [$property->id]) }}" type="button" class="btn btn-info btn-sm">View</a>
                                     <a href="{{  route('property.edit', [$property->id]) }}" type="button" class="btn btn-primary btn-sm">Edit</a>
                                     <a href="#" class="btn btn-danger btn-sm"
                                        onclick="if(confirm('Delete property?') === true) { event.preventDefault();

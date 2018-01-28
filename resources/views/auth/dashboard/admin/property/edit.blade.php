@@ -10,6 +10,17 @@
             </div>
         @endif
 
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <ul>
+                        <li>{{ $error }}</li>
+                    </ul>
+                </div>
+            @endforeach
+        @endif
+
         <div class="col-md-12">
 
             <legend>Edit Property</legend>
@@ -40,6 +51,16 @@
                 @php
                  $firstImage = $property->firstImage()->file_name
                 @endphp
+
+                {{--MAP--}}
+                <div class="container-overlay-sm">
+                    {!! Mapper::render() !!}
+                    <div class="overlay-sm">
+                        <p><a href="#coordinates" class="btn btn-primary" title="Edit coordinates">Edit</a></p>
+                    </div>
+                </div>
+                {{--./MAP--}}
+
                 @foreach($property->images as $ind=>$image)
                     @if($image->file_name !== $firstImage)
                         <div class="container-overlay-sm">
@@ -76,6 +97,9 @@
             {{ Form::bsText('caption') }}
             {{ Form::bsText('location') }}
 
+            <div class="col-md-6">
+                {{ Form::bsText('coordinates') }}
+            </div>
             <div class="col-md-2">
                 {{ Form::bsNumber('price') }}
             </div>

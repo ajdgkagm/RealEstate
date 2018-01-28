@@ -9,6 +9,7 @@ use App\Property;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Mapper;
 
 class PropertyController extends Controller
 {
@@ -29,6 +30,8 @@ class PropertyController extends Controller
             $query->where('name', 'admin');
         })->get();
 
+        Mapper::map($property->latitude, $property->longitude);
+
         return view('property.profile', compact('property', 'users'));
     }
 
@@ -39,20 +42,29 @@ class PropertyController extends Controller
 
     public function store(storeProperty $request)
     {
-        //check if coordinates is not null
-        if ($request->coordinates !== null) {
-            //fill latitude and longitude based on coordinates
-            $coordinates = explode(',', $request->coordinates);
-            //check if both coordinates have valid length
-            if (!($this->validLength($coordinates[0]) && $this->validLength($coordinates[1]))) {
-                return back()->withInput()->withErrors(['error' => 'Invalid Coordinates']);
-            }
-            $request->request->add(['latitude' => $coordinates[0], 'longitude' => $coordinates[1]]);
+        if ($this->validateCoordinates() !== true) {
+            return $this->validateCoordinates();
         }
 
         $property = Property::create($request->all());
         return $this->storeImage($request, $property->id);
 
+    }
+
+    public function validateCoordinates()
+    {
+        //check if coordinates is not null
+        if (request()->coordinates !== null) {
+            //fill latitude and longitude based on coordinates
+            $coordinates = explode(',', request()->coordinates);
+            //check if both coordinates have valid length
+            if (!($this->validLength($coordinates[0]) && $this->validLength($coordinates[1]))) {
+                return back()->withInput()->withErrors(['error' => 'Invalid Coordinates']);
+            }
+            request()->request->add(['latitude' => $coordinates[0], 'longitude' => $coordinates[1]]);
+        }
+
+        return true;
     }
 
     public function validLength($number)
@@ -76,12 +88,17 @@ class PropertyController extends Controller
 
     public function edit(Property $property)
     {
+        Mapper::map($property->latitude, $property->longitude);
         $property = $property->load('images');
         return view('auth.dashboard.admin.property.edit', compact('property'));
     }
 
-    public function update(Request $request, Property $property)
+    public function update(storeProperty $request, Property $property)
     {
+        if ($this->validateCoordinates() !== true) {
+            return $this->validateCoordinates();
+        }
+
         if ($request->hasFile('images')) {
             $this->storeImage($request, $property->id);
         }

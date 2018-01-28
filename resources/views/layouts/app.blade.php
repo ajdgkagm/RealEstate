@@ -80,7 +80,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script>
+{{--    <script>
         function myMap() {
             var myCenter = new google.maps.LatLng(14.0835,121.1474);
             var mapCanvas = document.getElementById("googleMap");
@@ -90,6 +90,6 @@
             marker.setMap(map);
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH2CYee7zYiH-y-0m0509wZaD44BWXmiI&callback=myMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH2CYee7zYiH-y-0m0509wZaD44BWXmiI&callback=myMap"></script>--}}
 </body>
 </html>
