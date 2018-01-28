@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Reservation;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,6 +14,7 @@ class UserController extends Controller
 
     public function home()
     {
-        return view('auth.dashboard.user.home');
+        $reservations = Reservation::with('property')->where('user_id', auth()->id())->get();
+        return view('auth.dashboard.user.home', compact('reservations'));
     }
 }
