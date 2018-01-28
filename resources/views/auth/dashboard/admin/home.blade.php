@@ -14,6 +14,10 @@
             @endif
 
             <div class="col-md-8 col-md-offset-2">
+                <div id="googleMap" style="width:100%;height:400px;"></div>
+            </div>
+
+            <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Dashboard</div>
 

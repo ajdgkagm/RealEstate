@@ -77,5 +77,16 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        function myMap() {
+            var myCenter = new google.maps.LatLng(14.0835,121.1474);
+            var mapCanvas = document.getElementById("googleMap");
+            var mapOptions = {center: myCenter, zoom: 6};
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+            var marker = new google.maps.Marker({position:myCenter});
+            marker.setMap(map);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH2CYee7zYiH-y-0m0509wZaD44BWXmiI&callback=myMap"></script>
 </body>
 </html>
