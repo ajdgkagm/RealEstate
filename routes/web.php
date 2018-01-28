@@ -30,4 +30,7 @@ Route::prefix('property')->group(function () {
     Route::post('image/delete', 'ResourceImageController@destroy')->name('image.destroy');
 
     Route::post('message/store', 'MessageController@store')->name('message.store');
+    Route::get('message/show/{message}', 'MessageController@show')->name('message.show');
+    Route::get('message/archive/{message}', 'MessageController@archive')->name('message.archive');
+    /*Route::get('message/delete/{message}', 'MessageController@destroy')->name('message.destroy');*/
 });

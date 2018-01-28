@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        {{ Form::bsText('message', null, ['label', 'placeholder' => 'Message']) }}
+                        {{ Form::bsText('content', null, ['label', 'placeholder' => 'Content/Message']) }}
                     </div>
 
                     @if(session('msg'))

@@ -3,6 +3,16 @@
 @section('content')
     <div class="container">
         <div class="row">
+
+            @if(session('msg'))
+            <div class="col-md-8 col-md-offset-2">
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Message: </strong> {{ session('msg') }}
+                </div>
+            </div>
+            @endif
+
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Dashboard</div>
@@ -27,6 +37,39 @@
                         <div class="btn-group">
                             <a href="{{ route('property.index') }}" type="button" class="btn btn-primary">View</a>
                             <a href="{{ route('property.create') }}" type="button" class="btn btn-success">Create</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Strangers' Messages</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th colspan="4">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($strangers as $stranger_msg)
+                                    <tr>
+                                        <td>{{ $stranger_msg->name }}</td>
+                                        <td>{{ $stranger_msg->email }}</td>
+                                        <td>
+                                            <a href="{{ route('message.show', [$stranger_msg->id]) }}" class="btn btn-primary btn-sm">View</a>
+                                            <a href="{{ route('message.archive', [$stranger_msg->id]) }}" class="btn btn-danger btn-sm">Archive</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

@@ -22,6 +22,7 @@ class MessageController extends Controller
         //
     }
 
+    //store message from strangers
     public function store(Request $request)
     {
 
@@ -30,37 +31,49 @@ class MessageController extends Controller
             'name'    => 'bail|required|alpha_spaces',
             'email'   => 'bail|required|email',
             'contact' => 'bail|required|numeric',
-            'message' => 'bail|required|alpha_num_spaces',
+            'content' => 'bail|required|alpha_num_spaces',
         ]);
-
-        $validated['message'] = $validated['message'] . " \r\n \r\n Name: " . $validated['name']. " \r\n Email: " . $validated['email']. " \r\n Contact: " . $validated['contact'];
 
         if (!isset($validated['to'])) {
             $validated['to'] = 0;
         }
 
-        Message::create(array_merge($validated, ['from' => 0]));
+        if (!isset($validated['from'])) {
+            $validated['from'] = 0;
+        }
+
+        Message::create($validated);
 
         return back()->with('msg', 'message sent');
     }
 
-    public function show(Message $messages)
+    public function show(Message $message)
+    {
+        return view('auth.dashboard.admin.message.show', compact('message'));
+    }
+
+    public function edit(Message $message)
     {
         //
     }
 
-    public function edit(Message $messages)
+    public function update(Request $request, Message $message)
     {
         //
     }
 
-    public function update(Request $request, Message $messages)
+    public function destroy(Message $message)
     {
-        //
+        $message->delete();
+
+        return back()->with('msg', 'Successfully Deleted Message');
     }
 
-    public function destroy(Message $messages)
+    public function archive(Message $message)
     {
-        //
+        $message->read = true;
+        $message->save();
+
+        return back()->with('msg', 'Message Archived');
     }
 }

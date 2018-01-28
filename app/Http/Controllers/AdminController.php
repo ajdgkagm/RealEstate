@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,14 @@ class AdminController extends Controller
             $query->where('name', 'user');
         })->get();
 
-        return view('auth.dashboard.admin.home', compact('users'));
+        $messages = Message::where('to', auth()->id())
+            ->where('read', false)
+            ->get();
+
+        $strangers = Message::where('to', 0)
+            ->where('read', false)
+            ->get();
+
+        return view('auth.dashboard.admin.home', compact('users', 'messages', 'strangers'));
     }
 }
