@@ -14,20 +14,42 @@
                     </a>
                     <div class="caption">
                         <h3>₱{{ $property->price }}M
-                            @if(Auth::user()->hasRole('admin'))
-                            <div class="btn-group pull-right">
-                                <a href="{{  route('property.edit', [$property->id]) }}" type="button" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="{{ route('image.destroy') }}" class="btn btn-danger btn-sm"
-                                   onclick="event.preventDefault();
-                                           document.getElementById('delete-image-{{ $property->id }}').submit();">
-                                    Delete
-                                </a>
-                                <form id="delete-image-{{ $property->id }}" action="{{ route('property.destroy') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="id" value="{{ $property->id }}">
-                                </form>
-                            </div>
+                            {{--CHECK IF ANY USER IS LOGIN--}}
+                            @if(Auth::user())
+                                {{--IF USER IS ADMIN--}}
+                                @if(Auth::user()->hasRole('admin'))
+                                <div class="btn-group pull-right">
+                                    <a href="{{  route('property.edit', [$property->id]) }}" type="button" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="#" class="btn btn-danger btn-sm"
+                                       onclick="if(confirm('Delete property?') === true) { event.preventDefault();
+                                               document.getElementById('delete-property-{{ $property->id }}').submit();}">
+                                        Delete
+                                    </a>
+                                    <form id="delete-property-{{ $property->id }}" action="{{ route('property.destroy') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="id" value="{{ $property->id }}">
+                                    </form>
+                                </div>
+                                {{--./IF USER IS ADMIN--}}
+
+                                {{--IF USER IS ORDINARY USER--}}
+                                    @elseif (Auth::user()->hasRole('user'))
+                                <div class="btn-group pull-right">
+                                    <a href="{{ route('property.profile', [$property->id]) }}" type="button" class="btn btn-primary btn-sm">View</a>
+                                    <a href="#" class="btn btn-success btn-sm"
+                                       onclick="event.preventDefault();
+                                               document.getElementById('property-reserve-{{ $property->id }}').submit();">
+                                        Reserve
+                                    </a>
+                                    <form id="property-reserve-{{ $property->id }}" action="{{ route('property.reserve', [$property->id]) }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="id" value="{{ $property->id }}">
+                                    </form>
+                                </div>
+                                @endif
+                                {{--./IF USER IS ORDINARY USER--}}
                             @endif
+                            {{--CHECK IF ANY USER IS LOGIN--}}
                         </h3>
 
                         <hr>

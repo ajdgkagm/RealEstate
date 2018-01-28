@@ -13,7 +13,7 @@ class PropertyController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:admin')->except(['index', 'profile']);
+        $this->middleware('role:admin')->except(['index', 'profile', 'reserve']);
     }
 
     public function index()
@@ -71,6 +71,11 @@ class PropertyController extends Controller
         Property::destroy($property->id);
 
         return back()->with(['msg' => 'Successfully deleted Image']);
+    }
+
+    public function reserve(Property $property)
+    {
+        return "RESERVING";
     }
 
     /* IMAGES SECTION */
