@@ -9,7 +9,7 @@ use App\Property;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Mapper;
+use Cornford\Googlmapper\Facades\MapperFacade as Mapper;;
 
 class PropertyController extends Controller
 {
