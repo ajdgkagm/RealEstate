@@ -25,13 +25,13 @@ class MessageController extends Controller
     //store message from strangers
     public function store(Request $request)
     {
-
+        $request->contact = (int)$request->contact;
         $validated = $request->validate([
-            'to'      => 'bail|nullable|numeric',
-            'name'    => 'bail|required|alpha_spaces',
-            'email'   => 'bail|required|email',
-            'contact' => 'bail|required|numeric',
-            'content' => 'bail|required|alpha_num_spaces',
+            'to'      => 'bail|nullable|numeric|max:255',
+            'name'    => 'bail|required|alpha_spaces|max:255',
+            'email'   => 'bail|required|email|max:255',
+            'contact' => 'bail|required|numeric|digits:11',
+            'content' => 'bail|required|alpha_num_spaces|max:255',
         ]);
 
         if (!isset($validated['to'])) {

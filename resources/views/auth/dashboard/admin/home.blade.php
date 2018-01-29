@@ -29,6 +29,7 @@
                         @endif
 
                         You are logged in! as ADMIN
+                        <p><a href="{{ route('user.edit', auth()->id()) }}" class="btn btn-default">Edit Profile</a></p>
                     </div>
                 </div>
             </div>
@@ -49,7 +50,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Strangers' Messages</h3>
+                        <h3 class="panel-title">Public Messages</h3>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -79,7 +80,7 @@
                 </div>
             </div>
 
-            {{--@if($users)
+            @if($users)
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-heading">Users</div>
@@ -100,8 +101,8 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                {{--<a href="#" class="btn btn-danger btn-sm">Delete</a>--}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -111,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-            @endif--}}
+            @endif
 
         </div>
     </div>

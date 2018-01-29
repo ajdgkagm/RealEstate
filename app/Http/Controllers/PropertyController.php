@@ -47,8 +47,12 @@ class PropertyController extends Controller
         }
 
         $property = Property::create($request->all());
-        return $this->storeImage($request, $property->id);
+        if (!$this->storeImage($request, $property->id)) {
+            $property->delete();
+            return back()->withInput()->withErrors(['error' => 'Please Upload at least 1 Image']);
+        }
 
+        return back()->with(['msg' => 'Successfully added property']);
     }
 
     public function validateCoordinates($request)
@@ -133,6 +137,8 @@ class PropertyController extends Controller
         $request->title = ($request->title !== null) ? $request->title : '';
         $request->description = ($request->description !== null) ? $request->description : '';
 
+        //@todo add validation for image
+        //check if there is an image uploaded
         if ($request->hasFile('images')) {
             $images = $request->file('images');
             $ind = $this->findImage($id);
@@ -153,10 +159,12 @@ class PropertyController extends Controller
             }
 
         } else {
-            return back()->withInput()->withErrors(['error' => 'Please Upload at least 1 Image']);
+            /*return back()->withInput()->withErrors(['error' => 'Please Upload at least 1 Image']);*/
+            return false;
         }
 
-        return back()->with(['msg' => 'Successfully added property']);
+        /*return back()->with(['msg' => 'Successfully added property']);*/
+        return true;
     }
 
     /*    public function updateImage(updateImage $request)

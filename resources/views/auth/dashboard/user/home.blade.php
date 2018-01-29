@@ -15,6 +15,7 @@
                         @endif
 
                         You are logged in! as USER
+                        <p><a href="{{ route('user.edit', auth()->id()) }}" class="btn btn-default">Edit Profile</a></p>
                     </div>
                 </div>
             </div>

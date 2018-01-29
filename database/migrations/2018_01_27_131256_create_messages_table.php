@@ -19,7 +19,7 @@ class CreateMessagesTable extends Migration
             $table->unsignedInteger('to');
             $table->string('name')->default('');
             $table->string('email')->default('');
-            $table->unsignedInteger('contact')->default(0);
+            $table->string('contact')->default('');
             $table->boolean('read')->default(false);
             $table->text('content');
             $table->timestamps();

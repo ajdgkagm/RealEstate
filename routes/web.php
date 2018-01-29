@@ -14,6 +14,11 @@ Route::post('login', 'Auth\LoginController@authenticate');
 
 Route::get('home', 'UserController@home')->name('user.home');
 
+Route::prefix('user')->group(function () {
+    Route::get('/profile/edit/{user}', 'UserController@edit')->name('user.edit');
+    Route::post('/profile/update/{user}', 'UserController@update')->name('user.update');
+});
+
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@home')->name('admin.home');
     Route::get('property/create', 'PropertyController@create')->name('property.create');

@@ -50,7 +50,7 @@ return [
     | Perform the loading and rendering of Googlmapper map asynchronously.
     |
     */
-    'async' => false,
+    'async' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -103,7 +103,7 @@ return [
     | The default zoom level Googlmapper should use.
     |
     */
-    'zoom' => 8,
+    'zoom' => 5,
 
     /*
     |--------------------------------------------------------------------------

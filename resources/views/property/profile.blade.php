@@ -7,7 +7,9 @@
                 <img style="height: 344px; width: 442px; float:left; margin-right: 3px" src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
             </a>
             <div style="height: 172px; width: 221px; float:left; margin-right: 3px; margin-bottom: 2px;">
-                {!! Mapper::render() !!}
+                @if(Mapper::render())
+                    {!! Mapper::render() !!}
+                @endif
             </div>
             @foreach($property->images as $ind=>$image)
                 @if($image->file_name !== $property->firstImage()->file_name)
@@ -35,26 +37,10 @@
                 <div class="row bg-primary">
                     <p class="h3 text-center">Contact Premier Agent®</p>
                 </div>
+
                 <div class="row">
-                    {!! Form::open(['route' => 'message.store']) !!}
-                    <br>
-                    <div class="col-md-12">
-                        {{ Form::bsText('name', null, ['label', 'placeholder' => 'Name']) }}
-                    </div>
-
-                    <div class="col-md-6">
-                        {{ Form::bsText('email', null, ['label', 'placeholder' => 'Email']) }}
-                    </div>
-
-                    <div class="col-md-6">
-                        {{ Form::bsText('contact', null, ['label', 'placeholder' => 'Contact Number']) }}
-                    </div>
-
-                    <div class="col-md-12">
-                        {{ Form::bsText('content', null, ['label', 'placeholder' => 'Content/Message']) }}
-                    </div>
-
                     @if(session('msg'))
+                        <br>
                         <div class="col-md-12">
                             <div class="alert alert-success">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -63,6 +49,7 @@
                         </div>
                     @endif
                     @if($errors->any())
+                        <br>
                         <div class="col-md-12">
                             <div class="alert alert-danger">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -74,6 +61,24 @@
                             </div>
                         </div>
                     @endif
+
+                    {!! Form::open(['route' => 'message.store']) !!}
+                    <br>
+                    <div class="col-md-12">
+                        {{ Form::bsText('name', null, ['label', 'placeholder' => 'Name']) }}
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ Form::bsText('email', null, ['label', 'placeholder' => 'Email']) }}
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ Form::bsText('contact', null, ['label', 'placeholder' => 'Contact Number eg: 09178363574']) }}
+                    </div>
+
+                    <div class="col-md-12">
+                        {{ Form::bsText('content', null, ['label', 'placeholder' => 'Content/Message']) }}
+                    </div>
 
                     <div class="col-md-10 col-md-offset-1">
                         <button class="center-block btn-block btn btn-primary" type="submit" value="submit">Request Info</button>
