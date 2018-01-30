@@ -59,6 +59,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Contact</th>
                                     <th colspan="4">Action</th>
                                 </tr>
                                 </thead>
@@ -67,6 +68,7 @@
                                     <tr>
                                         <td>{{ $stranger_msg->name }}</td>
                                         <td>{{ $stranger_msg->email }}</td>
+                                        <td>{{ $stranger_msg->contact }}</td>
                                         <td>
                                             <a href="{{ route('message.show', [$stranger_msg->id]) }}" class="btn btn-primary btn-sm">View</a>
                                             <a href="{{ route('message.archive', [$stranger_msg->id]) }}" class="btn btn-danger btn-sm">Archive</a>

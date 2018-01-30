@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-md-5" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                 <div class="row bg-primary">
-                    <p class="h3 text-center">Contact Premier Agent®</p>
+                    <p class="h3 text-center">Contact Premier Broker®</p>
                 </div>
 
                 <div class="row">
@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        {{ Form::bsText('contact', null, ['label', 'placeholder' => 'Contact Number eg: 09178363574']) }}
+                        {{ Form::bsNumber('contact', null, ['label', 'placeholder' => 'eg: 09178363574']) }}
                     </div>
 
                     <div class="col-md-12">
@@ -120,7 +120,7 @@
                                             </p>
                                         </div>
                                         <div class="col-xs-6">
-                                            <p style="margin-bottom: 1px">McRealty AGENT</p>
+                                            <p style="margin-bottom: 1px">McRealty Broker</p>
                                         </div>
                                         <div class="col-xs-6">
                                             <p style="margin-bottom: 1px">5 Recent Sales</p>

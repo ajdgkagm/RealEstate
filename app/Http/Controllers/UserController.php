@@ -14,6 +14,7 @@ class UserController extends Controller
         $this->middleware('auth')->except('home');
     }
 
+    //Homepage of ordinary user
     public function home()
     {
         $reservations = Reservation::with('property')->where('user_id', auth()->id())->get();
