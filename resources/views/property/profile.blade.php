@@ -142,7 +142,7 @@
                 <div class="row" style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.07)">
 
                     <div class="col-xs-6">
-                        <h3>₱12M</h3>
+                        <h3>₱ 12,000,000</h3>
                     </div>
                     <div class="text-center" style="margin-top: 10px;">
                         <div class="col-xs-2">

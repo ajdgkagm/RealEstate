@@ -23,4 +23,9 @@ class Property extends Model
     {
         return $this->hasMany('App\Reservation');
     }
+
+    public function types()
+    {
+        return $this->belongsToMany('App\Type');
+    }
 }
