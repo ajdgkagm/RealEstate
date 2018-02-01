@@ -97,11 +97,23 @@
             {{ Form::bsText('caption') }}
             {{ Form::bsText('location') }}
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 {{ Form::bsText('coordinates') }}
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 {{ Form::bsNumber('price') }}
+            </div>
+            <div class="col-md-3">
+                <label for="type">Type</label>
+                <select name="type" id="type" class="form-control">
+                    @if(old('type') !== null)
+                        <option value="{{ old('type') }}">{{ old('type') }}</option>
+                    @else
+                        @foreach($types as $type)
+                            <option value="{{ $type->name }}">{{ ucfirst($type->name) }}</option>
+                        @endforeach
+                    @endif
+                </select>
             </div>
             <div class="col-md-2">
                 {{ Form::bsNumber('beds') }}

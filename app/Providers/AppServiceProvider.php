@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Type;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
@@ -34,6 +35,11 @@ class AppServiceProvider extends ServiceProvider
 
         Validator::extend('coordinates', function ($attribute, $value) {
             return preg_match('/^[0-9,. ]+$/', $value);
+        });
+
+        Validator::extend('types', function ($attribute, $value) {
+            $type = Type::all();
+            return $type->contains('name', $value);
         });
 
         //Form Builder

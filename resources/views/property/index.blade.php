@@ -15,7 +15,7 @@
                         @endisset
                     </a>
                     <div class="caption">
-                        <h3>₱{{ $property->price }}M
+                        <h3>₱ {{ $property->price }}
                             {{--CHECK IF ANY USER IS LOGIN--}}
                             @if(Auth::user())
                                 {{--IF USER IS ADMIN--}}

@@ -98,7 +98,6 @@
                                     <img class="img-circle" src="{{ asset('images/index.svg') }}" style="min-width: 50px; max-width: 60px; width: 100%" alt="#">
                                 </div>
 
-
                                 <div class="col-xs-8">
                                     <div class="row">
                                         <div class="col-xs-6" style="margin: 1px">
@@ -142,28 +141,24 @@
                 <div class="row" style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.07)">
 
                     <div class="col-xs-6">
-                        <h3>₱ 12,000,000</h3>
+                        <h3>₱ {{ $property->price }}</h3>
                     </div>
                     <div class="text-center" style="margin-top: 10px;">
                         <div class="col-xs-2">
-                            <h4>4 <br> Beds</h4>
+                            <h4>{{ $property->beds }} <br> Beds</h4>
                         </div>
                         <div class="col-xs-2">
-                            <h4>3 <br> Bath</h4>
+                            <h4>{{ $property->bath }} <br> Bath</h4>
                         </div>
                         <div class="col-xs-2">
-                            <h4>2557 <br> sqft</h4>
+                            <h4>{{ $property->sqft }} <br> sqft</h4>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <h1 class="text-center">Extra Details</h1>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                    <br><br><br><br><br>
                 </div>
 
             </div>
@@ -171,11 +166,7 @@
             <div class="col-md-6 col-md-offset-6" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                 <div class="row">
                     <h1 class="text-center">Extra Details</h1>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                    <br><br><br><br><br>
                 </div>
 
             </div>

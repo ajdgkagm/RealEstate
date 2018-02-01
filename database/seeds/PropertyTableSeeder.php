@@ -16,8 +16,8 @@ class PropertyTableSeeder extends Seeder
         $property = Property::create([
             'caption'   => 'House1',
             'location'  => 'Tanauan City',
-            'latitude'  => '10.11893123',
-            'longitude' => '9.92310',
+            'latitude'  => '14.084073',
+            'longitude' => '121.149370',
             'price'     => '2000000',
             'beds'      => '4',
             'bath'      => '3',

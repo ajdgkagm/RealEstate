@@ -28,4 +28,11 @@ class Property extends Model
     {
         return $this->belongsToMany('App\Type');
     }
+
+    public function getPriceAttribute($value)
+    {
+        /*return the value of price with comma*/
+        return number_format($value, 0, '.', ',');
+
+    }
 }
