@@ -4,17 +4,25 @@
     <div class="container-fluid" style="box-shadow: rgba(0, 0, 0, 0.10) 0 2px 2px 0">
         <div class="row" style="max-height: 350px; overflow: hidden;">
             <a href="#">
-                <img style="height: 344px; width: 442px; float:left; margin-right: 3px" src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
+                @if(env('FILESYSTEM_DRIVER') === null)
+                    <img style="height: 344px; width: 442px; float:left; margin-right: 3px" src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
+                @else
+                    <img style="height: 344px; width: 442px; float:left; margin-right: 3px" src="{{ Storage::url('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
+                @endif
             </a>
             <div style="height: 172px; width: 221px; float:left; margin-right: 3px; margin-bottom: 2px;">
                 @if(Mapper::render())
                     {!! Mapper::render() !!}
                 @endif
             </div>
-            @foreach($property->images as $ind=>$image)
+        @foreach($property->images as $ind=>$image)
                 @if($image->file_name !== $property->firstImage()->file_name)
                 <a href="#">
-                    <img style="height: 172px; width: 221px; float:left; margin-right: 3px; margin-bottom: 2px;" src="{{ asset('images/property/' . $image->file_name) }}" alt="an image" class="hidden-xs {{ $ind > 4 ? 'hidden-sm' : '' }}">
+                    @if(env('FILESYSTEM_DRIVER') === null)
+                        <img style="height: 172px; width: 221px; float:left; margin-right: 3px; margin-bottom: 2px;" src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image" class="hidden-xs {{ $ind > 4 ? 'hidden-sm' : '' }}">
+                    @else
+                        <img style="height: 172px; width: 221px; float:left; margin-right: 3px; margin-bottom: 2px;" src="{{ Storage::url('images/property/' . $image->file_name) }}" alt="an image" class="hidden-xs {{ $ind > 4 ? 'hidden-sm' : '' }}">
+                    @endif
                 </a>
                 @endif
             @endforeach

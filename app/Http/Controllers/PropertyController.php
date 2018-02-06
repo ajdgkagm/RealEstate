@@ -141,15 +141,14 @@ class PropertyController extends Controller
         $request->title = ($request->title !== null) ? $request->title : '';
         $request->description = ($request->description !== null) ? $request->description : '';
 
-        //@todo add validation for image
         //check if there is an image uploaded
         if ($request->hasFile('images')) {
             $images = $request->file('images');
             $ind = $this->findImage($id);
             foreach ($images as $image) {
                 ++$ind;
-                $image->store('images/property', 'public');
                 $name = $image->hashName();
+                Storage::put("/images/property/$name", file_get_contents($image), 'public');
 
                 Image::create([
                     'path'        => 'public/images/property/',

@@ -11,7 +11,11 @@
                 <div class="thumbnail" style="border-bottom: 3px red solid;">
                     <a href="{{ route('property.profile', [$property->id]) }}">
                         @isset($property->firstImage()->file_name)
+                            @if(env('FILESYSTEM_DRIVER') === null)
                             <img style="width: 100%; height: 100%; max-height: 540px;" src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
+                            @else
+                            <img style="width: 100%; height: 100%; max-height: 540px;" src="{{ Storage::url('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
+                            @endif
                         @endisset
                     </a>
                     <div class="caption">
@@ -81,7 +85,7 @@
                                 <p><i class="icon-ruler fa-lg"></i> <span style="color:black; font-weight: 600;"><small>{{ $property->sqft }} SQFT</small></span></p>
                             </div>
                         </div>
-                        <p class="text-muted" style="font-size: 12px">{{ $property->location }}</p>
+                        <p style="font-size: 12px; color: black;">{{ $property->location }} <span class="text-muted pull-right">{{ $property->types()->first()->name }}</span></p>
                     </div>
                 </div>
             </div>
