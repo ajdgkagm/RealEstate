@@ -24,7 +24,7 @@ class storeProperty extends FormRequest
     public function rules()
     {
         return [
-            'images'      => 'bail|nullable|image',
+            'images.*'      => 'bail|nullable|image',
             'caption'     => 'bail|required|alpha_num_spaces|max:255',
             'location'    => 'bail|required|string|max:255',
             'coordinates' => 'bail|nullable|coordinates',

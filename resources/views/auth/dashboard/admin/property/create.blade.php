@@ -21,7 +21,7 @@
             @endif
 
             <div class="col-md-12">
-                {!! Form::open(['route' => 'property.store', 'enctype' => 'multipart/form-data']) !!}
+                {!! Form::open(['route' => 'property.store', 'files' => true]) !!}
                 <legend>Add Property</legend>
 
                 <div class="form-group">
