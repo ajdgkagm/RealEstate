@@ -1,6 +1,7 @@
 <?php
 
 //use Cornford\Googlmapper\Mapper;
+Route::get('/email', 'EmailController@send');
 
 Route::get('/', function () {
     return view('welcome');
