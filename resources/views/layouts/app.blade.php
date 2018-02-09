@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -44,6 +47,12 @@
                         <li><a href="{{ route('property.index') }}">Properties</a></li>
                         <!-- Authentication Links -->
                         @guest
+						     <li><a href="index.html">Home</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="portfolio.html">Portfolio</a></li>
+						<li><a href="services.html">Services</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="contact.html">Contact</a></li>
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
@@ -78,7 +87,9 @@
         @yield('content')
     </div>
 
-    <!-- Scripts -->
+    <div id="fh5co-page">
+	
+<!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 {{--    <script>
         function myMap() {

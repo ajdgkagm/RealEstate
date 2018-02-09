@@ -1,6 +1,22 @@
 <?php
 
 //use Cornford\Googlmapper\Mapper;
+Route::get('services', function() {
+	return view('services');
+});
+
+Route::get('project', function() {
+	return view('project');
+});
+
+Route::get('contactus', function() {
+	return view('contactus');
+});
+
+Route::get('newsandevents', function() {
+	return view('newsandevents');
+});
+
 
 Route::get('/', function () {
     return view('welcome');
