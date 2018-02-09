@@ -153,6 +153,7 @@ footer a,footer a:hover{
 </style>
     <div class="container-fluid" style="box-shadow: rgba(0, 0, 0, 0.10) 0 2px 2px 0">
         <div class="row" style="max-height: 350px; overflow: hidden;">
+
 		<div class="col-md-4 col-sm-6 co-xs-12 gal-item">
       <div class="box">
         <a href="#" data-toggle="modal" data-target="#2">
@@ -165,6 +166,14 @@ footer a,footer a:hover{
               <div class="modal-body">
                  <a href="#">
                 <img style="height: 344px; width: 442px; float:left; margin-right: 3px" src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
+
+            <a href="#">
+                @if(env('FILESYSTEM_DRIVER') === null)
+                    <img style="height: 344px; width: 442px; float:left; margin-right: 3px" src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
+                @else
+                    <img style="height: 344px; width: 442px; float:left; margin-right: 3px" src="{{ Storage::url('images/property/' . $property->firstImage()->file_name) }}" alt="an image">
+                @endif
+
             </a>
               </div>
                 <div class="col-md-12 description">
@@ -181,10 +190,14 @@ footer a,footer a:hover{
                     {!! Mapper::render() !!}
                 @endif
             </div>
-            @foreach($property->images as $ind=>$image)
+        @foreach($property->images as $ind=>$image)
                 @if($image->file_name !== $property->firstImage()->file_name)
                 <a href="#">
-                    <img style="height: 172px; width: 221px; float:left; margin-right: 3px; margin-bottom: 2px;" src="{{ asset('images/property/' . $image->file_name) }}" alt="an image" class="hidden-xs {{ $ind > 4 ? 'hidden-sm' : '' }}">
+                    @if(env('FILESYSTEM_DRIVER') === null)
+                        <img style="height: 172px; width: 221px; float:left; margin-right: 3px; margin-bottom: 2px;" src="{{ asset('images/property/' . $property->firstImage()->file_name) }}" alt="an image" class="hidden-xs {{ $ind > 4 ? 'hidden-sm' : '' }}">
+                    @else
+                        <img style="height: 172px; width: 221px; float:left; margin-right: 3px; margin-bottom: 2px;" src="{{ Storage::url('images/property/' . $image->file_name) }}" alt="an image" class="hidden-xs {{ $ind > 4 ? 'hidden-sm' : '' }}">
+                    @endif
                 </a>
                 @endif
             @endforeach
@@ -268,7 +281,6 @@ footer a,footer a:hover{
                                     <img class="img-circle" src="{{ asset('images/index.svg') }}" style="min-width: 50px; max-width: 60px; width: 100%" alt="#">
                                 </div>
 
-
                                 <div class="col-xs-8">
                                     <div class="row">
                                         <div class="col-xs-6" style="margin: 1px">
@@ -312,33 +324,36 @@ footer a,footer a:hover{
                 <div class="row" style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.07)">
 
                     <div class="col-xs-6">
-                        <h3>₱12M</h3>
+                        <h3>₱ {{ $property->price }}</h3>
                     </div>
                     <div class="text-center" style="margin-top: 10px;">
                         <div class="col-xs-2">
-                            <h4>4 <br> Beds</h4>
+                            <h4>{{ $property->beds }} <br> Beds</h4>
                         </div>
                         <div class="col-xs-2">
-                            <h4>3 <br> Bath</h4>
+                            <h4>{{ $property->bath }} <br> Bath</h4>
                         </div>
                         <div class="col-xs-2">
-                            <h4>2557 <br> sqft</h4>
+                            <h4>{{ $property->sqft }} <br> sqft</h4>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <h1 class="text-center">Extra Details</h1>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                    <br><br><br><br><br>
                 </div>
 
             </div>
 
-         
+            <div class="col-md-6 col-md-offset-6" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <div class="row">
+                    <h1 class="text-center">Extra Details</h1>
+                    <br><br><br><br><br>
+                </div>
+
+            </div>
+
         </div>
     </div>
 @endsection

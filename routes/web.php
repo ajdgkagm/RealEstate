@@ -18,6 +18,8 @@ Route::get('newsandevents', function() {
 });
 
 
+Route::get('/email', 'EmailController@send');
+
 Route::get('/', function () {
     return view('welcome');
 });

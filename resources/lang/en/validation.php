@@ -92,6 +92,7 @@ return [
     'alpha_spaces'         => 'The :attribute may only contain letters and spaces.',
     'alpha_num_spaces'     => 'The :attribute may only contain letters, numbers and spaces.',
     'coordinates'          => 'The :attribute may only contain comma, numbers and spaces.',
+    'types'          => 'The :attribute must be a valid property type.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

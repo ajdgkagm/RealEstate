@@ -6,6 +6,7 @@ use App\Http\Requests\storeProperty;
 use App\Http\Requests\updateImage;
 use App\Image;
 use App\Property;
+use App\Type;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -37,7 +38,8 @@ class PropertyController extends Controller
 
     public function create()
     {
-        return view('auth.dashboard.admin.property.create');
+        $types = Type::all();
+        return view('auth.dashboard.admin.property.create', compact('types'));
     }
 
     public function store(storeProperty $request)
@@ -51,7 +53,8 @@ class PropertyController extends Controller
             $property->delete();
             return back()->withInput()->withErrors(['error' => 'Please Upload at least 1 Image']);
         }
-
+        $type = Type::where('name', $request->type)->first();
+        $property->types()->attach($type->id);
         return back()->with(['msg' => 'Successfully added property']);
     }
 
@@ -94,7 +97,8 @@ class PropertyController extends Controller
     {
         Mapper::map($property->latitude, $property->longitude);
         $property = $property->load('images');
-        return view('auth.dashboard.admin.property.edit', compact('property'));
+        $types = Type::all();
+        return view('auth.dashboard.admin.property.edit', compact('property', 'types'));
     }
 
     public function update(storeProperty $request, Property $property)
@@ -137,15 +141,14 @@ class PropertyController extends Controller
         $request->title = ($request->title !== null) ? $request->title : '';
         $request->description = ($request->description !== null) ? $request->description : '';
 
-        //@todo add validation for image
         //check if there is an image uploaded
         if ($request->hasFile('images')) {
             $images = $request->file('images');
             $ind = $this->findImage($id);
             foreach ($images as $image) {
                 ++$ind;
-                $image->store('images/property', 'public');
                 $name = $image->hashName();
+                Storage::put("/images/property/$name", file_get_contents($image), 'public');
 
                 Image::create([
                     'path'        => 'public/images/property/',

@@ -23,4 +23,16 @@ class Property extends Model
     {
         return $this->hasMany('App\Reservation');
     }
+
+    public function types()
+    {
+        return $this->belongsToMany('App\Type');
+    }
+
+    public function getPriceAttribute($value)
+    {
+        /*return the value of price with comma*/
+        return number_format($value, 0, '.', ',');
+
+    }
 }

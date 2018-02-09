@@ -152,7 +152,7 @@ now override the 3.3 new styles for modern browsers & apply opacity
 						<li><a href="index.html">Home</a></li>
 						<li><a href="blog.html">About Us</a></li>
 						<li><a href="portfolio.html">Projects</a></li>
-						<li><a href="services.html">Guides</a></li>
+						<li><a href="{{ url('/services') }}">Guides</a></li>
 						<li><a href="about.html">News & Events</a></li>
 						<li><a href="contact.html">Contact Us</a></li>
 							<nav role="navigation">
