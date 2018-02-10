@@ -21,7 +21,11 @@
             {!! Form::open(['route' => ['image.update', $image->id], 'files' => true,]) !!}
             <legend>Edit Property Image</legend>
             <input type="hidden" name="imageId" value="{{ $image->id }}">
-            <img style="width: 30%; min-width: 350px;" src="{{ asset('images/property/' . $image->file_name) }}" class="center-block img-responsive" alt="Image">
+            @if(env('FILESYSTEM_DRIVER') === null)
+                <img style="width: 30%; min-width: 350px;" src="{{ asset('images/property/' . $image->file_name) }}" class="center-block img-responsive" alt="Image">
+                @else
+                <img style="width: 30%; min-width: 350px;" src="{{ Storage::url('images/property/' . $image->file_name) }}" class="center-block img-responsive" alt="Image">
+            @endif
 
             <hr>
 
