@@ -27,10 +27,18 @@
 
             <div class="row" style="max-height: 350px; overflow: hidden;">
                 <div class="container-overlay">
+                    @if(env('FILESYSTEM_DRIVER') === null)
                         <img src="{{ asset('images/property/' . $property->firstImage()->file_name) }}"
                              alt="an image"
                              class="image">
                         <div class="overlay">
+                    @else
+                        <img src="{{ Storage::url('images/property/' . $property->firstImage()->file_name) }}"
+                             alt="an image"
+                             class="image">
+                        <div class="overlay">
+                    @endif
+
                             <p>
                                 <a href="{{ route('image.edit', ['image' => $property->firstImage()->id]) }}" class="btn btn-primary">Edit</a>
                                 <a href="{{ route('image.destroy') }}" class="btn btn-danger"
@@ -64,10 +72,17 @@
                 @foreach($property->images as $ind=>$image)
                     @if($image->file_name !== $firstImage)
                         <div class="container-overlay-sm">
-                            <img src="{{ asset('images/property/' . $image->file_name) }}"
-                                 alt="an image"
-                                 class="image">
-                            <div class="overlay-sm">
+                            @if(env('FILESYSTEM_DRIVER') === null)
+                                <img src="{{ asset('images/property/' . $image->file_name) }}"
+                                     alt="an image"
+                                     class="image">
+                                <div class="overlay-sm">
+                                @else
+                                <img src="{{ Storage::url('images/property/' . $image->file_name) }}"
+                                     alt="an image"
+                                     class="image">
+                                <div class="overlay-sm">
+                            @endif
                                 <p>
                                     <a href="{{ route('image.edit', ['image' => $image->id]) }}" class="btn btn-primary">Edit</a>
                                     <a href="{{ route('image.destroy') }}" class="btn btn-danger"

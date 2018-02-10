@@ -27,7 +27,7 @@
             <h3>Follow Us</h3>
             <ul class="fh5co-social">
                 <li><a href="#"><i class="icon-twitter"></i> Twitter</a></li>
-                <li><a href="#"><i class="icon-facebook"></i> Facebook</a></li>
+                <li><a href="https://www.facebook.com/houseinLipa/"><i class="icon-facebook"></i> Facebook</a></li>
                 <li><a href="#"><i class="icon-google-plus"></i> Google Plus</a></li>
                 <li><a href="#"><i class="icon-instagram"></i> Instagram</a></li>
             </ul>

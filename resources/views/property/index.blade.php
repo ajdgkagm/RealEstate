@@ -7,15 +7,10 @@
 
 @section('content')
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-  
     <div class="container">
         <div class="row">
             @if(count($properties) === 0)
-                <h2 class="text-warning text-center">No Properties Yet</h2>
+                <h2 class="text-warning text-center">No Properties Yet. <a href="{{ route('property.create') }}">Create</a> one?</h2>
             @endif
             @foreach($properties as $property)
             <div class="col-sm-6 col-md-4">

@@ -14,9 +14,31 @@
                             @if(Auth::user()->hasRole('admin'))
                                 <li><a class="{{ request()->segment(1) === 'admin' ? 'active' : '' }}" href="{{ url('/admin') }}">Dashboard</a></li>
                             @else
-                                <li><a class="{{ request()->segment(1) === 'home' ? 'active' : '' }}" href="{{ url('/home') }}">Dashboard</a></li>
+                                <li><a class="{{ request()->segment(1) === 'home' ? 'active' : '' }}" href="{{ url('/home') }}">Profile</a></li>
                             @endif
                             <li><a class="{{ request()->segment(1) === 'property' ? 'active' : '' }}" href="{{ route('property.index') }}">Properties</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu" >
+{{--                                        <li>
+                                            <a href="{{ route( Auth::user()->hasRole('admin') ? 'admin.home' : 'user.home' ) }}">Home</a>
+                                        </li>--}}
+                                        <li style="width: 100%">
+                                            <a class="text-center" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                Sign Out
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
                         @else
                             <li><a class="{{ request()->segment(1) === 'property' ? 'active' : '' }}" href="{{ route('property.index') }}">Properties</a></li>
                             <li><a class="{{ request()->segment(1) === 'login' ? 'active' : '' }}" href="{{ route('login') }}">Login</a></li>
