@@ -47,12 +47,6 @@
                         <li><a href="{{ route('property.index') }}">Properties</a></li>
                         <!-- Authentication Links -->
                         @guest
-						     <li><a href="index.html">Home</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="portfolio.html">Portfolio</a></li>
-						<li><a href="services.html">Services</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="contact.html">Contact</a></li>
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
@@ -88,19 +82,9 @@
     </div>
 
     <div id="fh5co-page">
-	
+    </div>
 <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-{{--    <script>
-        function myMap() {
-            var myCenter = new google.maps.LatLng(14.0835,121.1474);
-            var mapCanvas = document.getElementById("googleMap");
-            var mapOptions = {center: myCenter, zoom: 6};
-            var map = new google.maps.Map(mapCanvas, mapOptions);
-            var marker = new google.maps.Marker({position:myCenter});
-            marker.setMap(map);
-        }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH2CYee7zYiH-y-0m0509wZaD44BWXmiI&callback=myMap"></script>--}}
+
 </body>
 </html>
