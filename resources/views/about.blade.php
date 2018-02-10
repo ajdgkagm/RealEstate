@@ -101,28 +101,7 @@
 	
 	
 	<div id="fh5co-page">
-	<header id="fh5co-header" role="banner">
-		<div class="container">
-			<div class="header-inner">
-			<h1><i class="sl-icon-home"></i><a href="index.html">MC Realty</a></h1>
-				<nav role="navigation">
-					<ul>
-					<li><a href="index.html">Home</a></li>
-						<li><a class="active" href="services.html">About Us</a></li>
-						<li><a  href="project.php">Projects</a></li>
-						<li><a href="blog.html">Guides</a></li>
-						<li><a href="about.html">News & Events</a></li>
-						<li><a href="contact.html">Contact Us</a></li>
-						<li><a href="properties.php">Properties</a></li>
-						<li><a href="login.php">Login</a></li>
-						<li><a href="register.php">Register</a></li>
-						
-					</ul>
-					</ul>
-				</nav>
-			</div>
-		</div>
-		
+		@include('layouts.lesser.inc.header')
 					
 <div class="image-aboutus-banner"style="margin-top:70px">
 <div class="container">
@@ -275,8 +254,6 @@
 			
 		</div>
 	</footer>
-	</div>
-	
 	
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>

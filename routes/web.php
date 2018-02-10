@@ -1,20 +1,20 @@
 <?php
 
-Route::get('services', function() {
-	return view('services');
+Route::get('about', function() {
+	return view('about');
 });
 
 Route::get('project', function() {
 	return view('project');
 });
 
-Route::get('contact', function() {
+/*Route::get('contact', function() {
 	return view('contact');
-});
+});*/
 
-Route::get('news', function() {
+/*Route::get('news', function() {
 	return view('news');
-});
+});*/
 
 
 Route::get('/email', 'EmailController@send');

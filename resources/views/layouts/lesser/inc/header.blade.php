@@ -8,8 +8,9 @@
                     @if (Route::has('login'))
                         <li><a class="{{ request()->segment(1) === null ? 'active' : '' }}" href="{{ url('/') }}">Home</a></li>
                         <li><a class="{{ request()->segment(1) === 'project' ? 'active' : '' }}" href="{{ url('project') }}">Project</a></li>
-                        <li><a class="{{ request()->segment(1) === 'contact' ? 'active' : '' }}" href="{{ url('contact') }}">Contact</a></li>
-                        <li><a class="{{ request()->segment(1) === 'news' ? 'active' : '' }}" href="{{ url('news') }}">News</a></li>
+                        <li><a class="{{ request()->segment(1) === 'about' ? 'active' : '' }}" href="{{ url('about') }}">About</a></li>
+                        {{--<li><a class="{{ request()->segment(1) === 'contact' ? 'active' : '' }}" href="{{ url('contact') }}">Contact</a></li>--}}
+                        {{--<li><a class="{{ request()->segment(1) === 'news' ? 'active' : '' }}" href="{{ url('news') }}">News</a></li>--}}
                         @auth
                             @if(Auth::user()->hasRole('admin'))
                                 <li><a class="{{ request()->segment(1) === 'admin' ? 'active' : '' }}" href="{{ url('/admin') }}">Dashboard</a></li>
