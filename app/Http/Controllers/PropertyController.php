@@ -120,7 +120,7 @@ class PropertyController extends Controller
         $property = Property::findOrFail($request->id);
 
         foreach ($property->images as $image) {
-            Storage::disk('public')->delete('images/property/' . $image->file_name);
+            Storage::delete('images/property/' . $image->file_name);
             $image->delete();
         }
 
@@ -193,7 +193,7 @@ class PropertyController extends Controller
 
             if ($request->hasFile('path')) {
                 $file = $request->file('path')->store("images/$folder", 'public');
-                $exists = Storage::disk('public')->url($file);
+                $exists = Storage::url($file);
     //            dd($exists);
                 $segments = explode('/', $exists);
                 $noExt = explode('.', $segments[6]);

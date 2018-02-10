@@ -22,10 +22,11 @@ class ResourceImageController extends Controller
     {
         if ($request->hasFile('image')) {
             $imageFile = $request->file('image');
-            $imageFile->store('images/property', 'public');
+            /*$imageFile->store('images/property', 'public');*/
             $name = $imageFile->hashName();
+            Storage::put("/images/property/$name", file_get_contents($imageFile), 'public');
 
-            Storage::disk('public')->delete('images/property/'.$image->file_name);
+            Storage::delete('images/property/'.$image->file_name);
 
             $image->update([
                 'file_name'   => $name,
@@ -40,7 +41,7 @@ class ResourceImageController extends Controller
     public function destroy(Request $request)
     {
         $image = Image::findOrFail($request->id);
-        Storage::disk('public')->delete('images/property/'.$image->file_name);
+        Storage::delete('images/property/'.$image->file_name);
         Image::destroy($image->id);
 
         return back()->with(['msg' => 'Successfully deleted Image']);
