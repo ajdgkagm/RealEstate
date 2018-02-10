@@ -1,5 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.lesser.main')
 
+@section('header')
+    @include('layouts.lesser.inc.header')
+    <br><br><br>
+@endsection
 @section('content')
 <div class="container">
     <div class="row">

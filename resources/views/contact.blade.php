@@ -165,27 +165,7 @@
 	
 	
 	<div id="fh5co-page">
-	<header id="fh5co-header" role="banner">
-		<div class="container">
-			<div class="header-inner">
-				<h1><i class="sl-icon-home"></i><a href="index.html">MC Realty</a></h1>
-				<nav role="navigation">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="blog.html">About Us</a></li>
-						<li><a  href="project.php">Projects</a></li>
-						<li><a href="services.html">Guides</a></li>
-						<li><a href="about.html">News & Events</a></li>
-						<li><a class="active" href="contact.html">Contact Us</a></li>
-						<li><a href="properties.php">Properties</a></li>
-						<li><a href="login.php">Login</a></li>
-						<li><a href="register.php">Register</a></li>
-						
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
+	@include('layouts.lesser.inc.header')
 	</div>
 	<div id="fh5co-intro-section">
 	<div class="container animated fadeIn">

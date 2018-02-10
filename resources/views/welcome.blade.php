@@ -1,38 +1,10 @@
 @extends('layouts.lesser.main')
 
+@section('header')
+    @include('layouts.lesser.inc.header')
+@endsection
+
 @section('content')
-<div id="fh5co-page">
-    <header id="fh5co-header" role="banner">
-        <div class="container">
-            <div class="header-inner">
-                <h1><i class="sl-icon-home"></i><a href="{{ url('/') }}">MC Realty</a></h1>
-                <nav role="navigation">
-                    <ul>
-
-                        @if (Route::has('login'))
-                            <div class="top-right links">
-                                <li><a href="{{ url('/') }}">Home</a></li>
-                                <li><a href="blog.html">About Us</a></li>
-                                @auth
-                                    @if(Auth::user()->hasRole('admin'))
-                                        <a href="{{ url('/admin') }}">Home</a>
-                                    @else
-                                        <a href="{{ url('/home') }}">Home</a>
-                                    @endif
-                                    <a href="{{ route('property.index') }}">Properties</a>
-                                @else
-                                    <li><a href="{{ route('property.index') }}">Properties</a></li>
-                                    <li><a href="{{ route('login') }}">Login</a></li>
-                                    <li><a href="{{ route('register') }}">Register</a></li>
-                                @endauth
-                            </div>
-                        @endif
-
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
     <div id="fh5co-intro-section">
         <div class="container">
             <div class="row">
@@ -248,7 +220,9 @@
         </div>
     </div>
 
+@endsection
 
+@section('footer')
     <footer id="fh5co-footer" role="contentinfo">
 
         <div class="container">
@@ -291,5 +265,4 @@
 
         </div>
     </footer>
-</div>
 @endsection

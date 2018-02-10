@@ -143,7 +143,11 @@
 <body>
 
 {{--=======================CONTENT=======================--}}
+<div class="fh5co-page">
+    @yield('header')
     @yield('content')
+    @yield('footer')
+</div>
 
 <!-- jQuery -->
 <script src="js/jquery.min.js"></script>

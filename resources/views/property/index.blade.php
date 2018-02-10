@@ -1,4 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.lesser.main')
+
+@section('header')
+    @include('layouts.lesser.inc.header')
+    <br><br><br><br>
+@endsection
 
 @section('content')
 
@@ -98,4 +103,9 @@
             @endforeach
         </div>
     </div>
+@endsection
+
+@section('footer')
+    <br><br><br><br><br><br><br><br><br>
+    @include('layouts.lesser.inc.footer')
 @endsection
