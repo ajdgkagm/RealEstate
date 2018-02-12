@@ -5,11 +5,11 @@
 @endsection
 
 @section('content')
-    <div id="fh5co-intro-section">
-        <div class="container">
+   
+        <div class="container-fluid">
             <div class="row">
 
-                <div class="container">
+                <div class="container" style="width:100%;">
                     <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-target="#carousel" data-slide-to="0" class="active"></li>
@@ -48,7 +48,6 @@
 
             </div>
         </div>
-    </div>
 
     <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
         <h2>Check out our houses</h2>
