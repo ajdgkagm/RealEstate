@@ -8,16 +8,16 @@ Route::get('project', function() {
 	return view('project');
 });
 
-/*Route::get('contact', function() {
+Route::get('contact', function() {
 	return view('contact');
-});*/
+});
 
-/*Route::get('news', function() {
+/*Route::('news', function() {
 	return view('news');
 });*/
 
 
-Route::get('/email', 'EmailController@send');
+/*Route::('/email', 'EmailController@send');*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,7 +56,7 @@ Route::prefix('property')->group(function () {
     Route::post('message/store', 'MessageController@store')->name('message.store');
     Route::get('message/show/{message}', 'MessageController@show')->name('message.show');
     Route::get('message/archive/{message}', 'MessageController@archive')->name('message.archive');
-    /*Route::get('message/delete/{message}', 'MessageController@destroy')->name('message.destroy');*/
+    /*Route::('message/delete/{message}', 'MessageController@destroy')->name('message.destroy');*/
 
     Route::post('reservation/store/{property}', 'ReservationController@store')->name('reservation.store');
     Route::post('reservation/delete/{property}', 'ReservationController@destroy')->name('reservation.destroy');
